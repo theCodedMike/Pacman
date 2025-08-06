@@ -12,7 +12,7 @@ public class Done_MyAStar : MonoBehaviour
 	//参考物体预设体
 	public GameObject reference;
 	//格子数组
-	public Grid[,] grids;
+	public Done_Grid[,] grids;
 	//格子数组对应的参考物（方块）对象
 	public GameObject[,] objs;
 	//开启列表
@@ -78,7 +78,7 @@ public class Done_MyAStar : MonoBehaviour
         int y = 31;
 		row = x;
 		colomn = y;
-		grids = new Grid[x, y];
+		grids = new Done_Grid[x, y];
 		objs = new GameObject[x, y];
 		//起始坐标
 		Vector3 startPos = 
@@ -86,7 +86,7 @@ public class Done_MyAStar : MonoBehaviour
 		//生成参考物体（Cube）
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				grids [i, j] = new Grid (i, j);
+				grids [i, j] = new Done_Grid (i, j);
 				GameObject item = (GameObject)Instantiate (reference, 
 					                  new Vector3 (i+12f , j+15f, -10) + startPos, 
 					                  Quaternion.identity);
@@ -110,13 +110,13 @@ public class Done_MyAStar : MonoBehaviour
         
 		openList.Add (grids [startX, startY]);
 		//声明当前格子变量，并赋初值
-		Grid currentGrid = openList [0] as Grid;
+		Done_Grid currentGrid = openList [0] as Done_Grid;
 		//循环遍历路径最小F的点
-		while (openList.Count > 0 && currentGrid.type != GridType.End) {
+		while (openList.Count > 0 && currentGrid.type != Done_GridType.End) {
 			//获取此时最小F点
-			currentGrid = openList [0] as Grid;
+			currentGrid = openList [0] as Done_Grid;
 			//如果当前点就是目标
-			if (currentGrid.type == GridType.End) {
+			if (currentGrid.type == Done_GridType.End) {
 				//Debug.Log ("Find");
 				//生成结果
 				GenerateResult (currentGrid);
@@ -130,7 +130,7 @@ public class Done_MyAStar : MonoBehaviour
 						int y = currentGrid.y + j;
 						//如果未超出所有格子范围，不是障碍物，不是重复点
 						if (x >= 0 && y >= 0 && x < row && y < colomn
-						    && grids [x, y].type != GridType.Obstacle
+						    && grids [x, y].type != Done_GridType.Obstacle
 						    && !closeList.Contains (grids [x, y])) {
 							//计算G值
 							int g = currentGrid.g + (int)(Mathf.Sqrt ((Mathf.Abs (i) + Mathf.Abs (j))) * 10);
@@ -174,7 +174,7 @@ public class Done_MyAStar : MonoBehaviour
 	/// 生成结果
 	/// </summary>
 	/// <param name="currentGrid">Current grid.</param>
-	void GenerateResult (Grid currentGrid)
+	void GenerateResult (Done_Grid currentGrid)
 	{
 		//如果当前格子有父格子
 		if (currentGrid.parent != null) {

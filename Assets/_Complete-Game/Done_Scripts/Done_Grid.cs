@@ -6,7 +6,7 @@ using System;
 /// <summary>
 /// 格子类型
 /// </summary>
-public enum GridType
+public enum Done_GridType
 {
 	//正常类型
 	Normal,
@@ -21,7 +21,7 @@ public enum GridType
 /// <summary>
 /// 格子类（实现IComparable方便排序）
 /// </summary>
-public class Grid : IComparable
+public class Done_Grid : IComparable
 {
 	//格子坐标x-y
 	public int x;
@@ -31,11 +31,11 @@ public class Grid : IComparable
 	public int g;
 	public int h;
 	//格子类型
-	public GridType type;
+	public Done_GridType type;
 	//格子的归属（父格子）
-	public Grid parent;
+	public Done_Grid parent;
 	//构造赋值
-	public Grid (int x, int y)
+	public Done_Grid (int x, int y)
 	{
 		this.x = x;
 		this.y = y;
@@ -48,7 +48,7 @@ public class Grid : IComparable
 	/// <param name="obj">Object.</param>
 	public int CompareTo (object obj)
 	{
-		Grid grid = (Grid)obj;
+		Done_Grid grid = (Done_Grid)obj;
 		if (this.f < grid.f) {
 			//升序
 			return -1;

@@ -23,18 +23,18 @@ public class Done_Reference : MonoBehaviour
 	{
         if (other.name == "Done_Blinky") {
 			GetComponent<MeshRenderer> ().material = startMat;
-			Done_MyAStar.instance.grids [x, y].type = GridType.Start;
+			Done_MyAStar.instance.grids [x, y].type = Done_GridType.Start;
 			Done_MyAStar.instance.openList.Add (Done_MyAStar.instance.grids [x, y]);
 			Done_MyAStar.instance.startX = x;
 			Done_MyAStar.instance.startY = y;
         } else if (other.name == "Done_Pacman") {
 			GetComponent<MeshRenderer> ().material = endMat;
-			Done_MyAStar.instance.grids [x, y].type = GridType.End;
+			Done_MyAStar.instance.grids [x, y].type = Done_GridType.End;
 			Done_MyAStar.instance.targetX = x;
 			Done_MyAStar.instance.targetY = y;
         } else if (other.name == "Done_Obstacle") {
 			GetComponent<MeshRenderer> ().material = obstacleMat;
-			Done_MyAStar.instance.grids [x, y].type = GridType.Obstacle;
+			Done_MyAStar.instance.grids [x, y].type = Done_GridType.Obstacle;
         }
 
     }

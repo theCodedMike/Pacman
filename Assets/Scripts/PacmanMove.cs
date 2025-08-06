@@ -28,7 +28,7 @@ public class PacmanMove : MonoBehaviour
     {
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return hit.collider == cd;
+        return hit.transform.gameObject.name != "Obstacle";
     }
 
     private void FixedUpdate()
